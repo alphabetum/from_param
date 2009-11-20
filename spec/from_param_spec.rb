@@ -13,7 +13,7 @@ describe ActiveRecord::Base, "with from_param" do
   it "should automatically save the to_param to the param field if one exists" do
     @paramed.name = "Angus McIntyre"
     @paramed.save
-    ParameteredModel.find(@paramed.id).param.should == "angus-mcintyre"
+    ParameteredCallbackedModel.find(@paramed.id).param.should == "angus-mcintyre"
   end
   
   it "should retrieve a model from its to_param" do

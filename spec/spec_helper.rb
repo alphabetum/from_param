@@ -11,6 +11,13 @@ class ParameteredModel < ActiveRecord::Base
   end
 end
 
+class ParameteredCallbackedModel < ActiveRecord::Base
+  def to_param
+    name.gsub(" ","-").downcase.gsub(/[^a-z-]/,"")
+  end
+  before_save :set_param
+end
+
 class UnparameteredModel < ActiveRecord::Base
   def to_param
     "#{id}-#{name.gsub(" ","-").downcase.gsub(/[^a-z-]/,"")}"

@@ -43,7 +43,6 @@ class ActiveRecord::Base
     self.class.param_column
   end
   
-  before_save :set_param
   # Automatically called before saving, sets
   # the param_column to the current to_param
   def set_param
