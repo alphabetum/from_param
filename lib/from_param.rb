@@ -49,3 +49,13 @@ class ActiveRecord::Base
     send "#{param_column}=", to_param if param_column?
   end
 end
+
+class ActionController::Base
+  # Use as a before_filter.
+  def get_from_param
+    instance_variable_set(
+      "@#{self.controller_name.singularize}", 
+      self.controller_name.classify.constantize.from_param(params[:id])
+    )
+  end
+end
