@@ -24,11 +24,11 @@ class ActiveRecord::Base
     # tried to find a matching record. If param_column
     # is set and exists, uses that as the finder, otherwise
     # uses the id such as in the default Rails to_param.
-    def from_param(parameter)
+    def from_param(*options)
       if param_column?
-        send "find_by_#{param_column}", parameter
+        send "find_by_#{param_column}", *options
       else
-        find_by_id(parameter.to_i)        
+        find(*options)        
       end
     end
   end
